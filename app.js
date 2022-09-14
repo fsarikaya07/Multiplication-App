@@ -8,34 +8,38 @@ questionEl.innerText = `What is ${num1} multiply by ${num2} ?`;
 const formEl = document.getElementById("form");
 const inputEl = document.getElementById("input");
 
+
+
+
+
 let score =JSON.parse(localStorage.getItem("score"));
 if (!score) {
   score = 0;
 }
+const answer = num1 * num2;
 
-const scoreEl = document.getElementById("score");
+
 scoreEl.innerText = `Score: ${score}`;
 
-const answer = num1 * num2;
+questionEl.innerText = `What is ${num1} multiply by ${num2} ?`;
+
+const scoreEl = document.getElementById("score");
+
 
 formEl.addEventListener("submit", () => {
   const userAns = +inputEl.value;
 
-if (userAns === answer) {
-  score++;    
-  updateLocalStorage();
-  
-} else {
-  score--;    
-  updateLocalStorage();
-}
-});
+
+  if (userAns === answer) {
+    score++;
+    updateLocalStorage();
+  } else {
+    score--;
+    updateLocalStorage();
+  }
 
 
 function updateLocalStorage() {
   localStorage.setItem("score", JSON.stringify(score));
 }
 
-// btnEl.addEventListener("click",()=>{
-//     questionEl.innerText=`What is ${num1} multiply by ${num2} ?`
-// })
